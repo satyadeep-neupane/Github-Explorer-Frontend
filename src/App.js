@@ -68,20 +68,20 @@ Inspiration, code snippets, etc.
 
 export default function App() {
     return (
-        <div class="container mx-auto min-h-screen bg-custom-black pb-3">
-            <nav class="bg-gray-800">
-                <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                    <div class="relative flex h-16 items-center justify-between">
-                        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-center">
-                            <div class="w-10/12 md:w-6/12">
-                                <div class="flex space-x-4">
-                                    <div class="relative mx-auto w-full">
-                                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+        <div className="container-full mx-auto min-h-screen bg-custom-black pb-3">
+            <nav className="bg-gray-800">
+                <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                    <div className="relative flex h-16 items-center justify-between">
+                        <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-center">
+                            <div className="w-10/12 md:w-6/12">
+                                <div className="flex space-x-4">
+                                    <div className="relative mx-auto w-full">
+                                        <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
                                             <IoSearch className="text-white" />
                                         </span>
                                         <input
                                             placeholder="Enter your search keyword"
-                                            class="w-full bg-gray-900 text-white rounded-md px-3.5 py-2 pl-10 text-sm font-medium"
+                                            className="w-full bg-gray-900 text-white rounded-md px-3.5 py-2 pl-10 text-sm font-medium"
                                             aria-current="page"
                                         />
                                     </div>
@@ -137,10 +137,10 @@ export default function App() {
                     </div>
                 </div>
             </div>
-            <div className="text-white w-8/12 mx-auto px-3 border-x border-b rounded-b-lg border-gray-400 py-3">
+            <div className="text-white lg:w-8/12 md:w-8/12 w-10/12 mx-auto px-3 border-x border-b rounded-b-lg border-gray-400 py-3">
                 <h3 className="text-2xl text-zinc-400">Readme</h3>
                 <hr className="mb-2" />
-                <Markdown className="prose-zinc lg:prose-sm">
+                <Markdown className="prose prose-slate dark:prose-invert lg:prose-sm">
                     {markdown}
                 </Markdown>
             </div>
