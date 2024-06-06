@@ -1,12 +1,11 @@
-import { FaRegStar } from "react-icons/fa";
-import { FaRegEye } from "react-icons/fa";
+import { FaRegStar, FaRegEye, FaLink } from "react-icons/fa";
 import { FaCodeFork } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
-import { FaLink } from "react-icons/fa";
+import { IoMdArrowRoundBack } from "react-icons/io";
 import { VscIssues } from "react-icons/vsc";
 import { DiGitBranch } from "react-icons/di";
 import Markdown from "react-markdown";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { FaGithubAlt } from "react-icons/fa";
 
 const markdown = `
 # Project Title
@@ -69,81 +68,77 @@ Inspiration, code snippets, etc.
 export default function App() {
     return (
         <div className="container-full mx-auto min-h-screen bg-custom-black pb-3">
-            <nav className="bg-gray-800">
-                <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                    <div className="relative flex h-16 items-center justify-between">
-                        <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-center">
-                            <div className="w-10/12 md:w-6/12">
-                                <div className="flex space-x-4">
-                                    <div className="relative mx-auto w-full">
-                                        <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                                            <IoSearch className="text-white" />
-                                        </span>
-                                        <input
-                                            placeholder="Enter your search keyword"
-                                            className="w-full bg-gray-900 text-white rounded-md px-3.5 py-2 pl-10 text-sm font-medium"
-                                            aria-current="page"
-                                        />
-                                    </div>
-                                </div>
+            <header>
+                <nav className="bg-gray-800">
+                    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+                        <a
+                            href="#"
+                            className="flex-shrink-0 text-white text-xl hidden md:block"
+                        >
+                            <FaGithubAlt className="inline-block mb-1" /> Github Explorer
+                        </a>
+                        <div className="absolute left-0 right-0 mx-auto w-10/12 md:w-6/12 flex justify-center xs:px-10">
+                            <div className="relative mx-auto w-full">
+                                <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
+                                    <IoSearch className="text-white" />
+                                </span>
+                                <input
+                                    placeholder="Enter your search keyword"
+                                    className="w-full bg-gray-900 text-white rounded-md px-3.5 py-2 pl-10 text-sm font-medium"
+                                    aria-label="Search"
+                                />
                             </div>
                         </div>
                     </div>
-                </div>
-            </nav>
-            <div className="lg:w-8/12 md:w-8/12 w-10/12 mx-auto mt-3">
-                <button className="my-3">
-                    <p className="text-white bg-indigo-400 rounded-full px-3 py-1">
-                        <IoMdArrowRoundBack className="inline-block mb-1" />{" "}
-                        View More
-                    </p>
+                </nav>
+            </header>
+
+            <main className="lg:w-8/12 md:w-8/12 w-10/12 mx-auto mt-3">
+                <button className="my-3 bg-indigo-400 rounded-full px-3 py-1 text-white flex items-center">
+                    <IoMdArrowRoundBack className="mr-2" />
+                    View More
                 </button>
-                <div className="border-gray-400 rounded-t-lg border-x border-t py-1.5 px-4">
-                    <a className="text-2xl font-semibold text-sky-500 underline">
+                <section className="border-gray-400 rounded-t-lg border-x border-t py-1.5 px-4">
+                    <a
+                        href="#"
+                        className="text-2xl font-semibold text-sky-500 underline"
+                    >
                         kunal-kushwaha/DSA-Bootcamp-Java
                     </a>
-                    <h2 className="text-zinc-200 text-lg">
+                    <h2 className="text-zinc-200 text-lg flex items-center">
                         Kunal Kushwaha{" "}
-                        <a>
-                            <FaLink className="inline-block text-sky-500" />
-                        </a>
+                        <FaLink className="inline-block text-sky-500 ml-2" />
                     </h2>
                     <p className="text-zinc-200 text-xs">
                         Last update on: 14th May
                     </p>
-                    <div className="flex mt-2">
-                        <div className="w-12/12">
-                            <div className="border-gray-600 rounded-full border text-white px-3 inline-block py-0.5 my-2 mx-1 text-xs bg-[#111827]">
-                                <VscIssues className="inline-block mb-0.5" />{" "}
-                                Open Issues: 23
-                            </div>
-                            <div className="border-gray-600 rounded-full border text-white px-3 inline-block py-0.5 my-2 mx-1 text-xs bg-[#111827]">
-                                <DiGitBranch className="inline-block mb-0.5" />{" "}
-                                Default: main
-                            </div>
-                            <div className="border-gray-600 rounded-full border text-white px-3 inline-block py-0.5 my-2 mx-1 text-xs bg-[#111827]">
-                                <FaRegStar className="inline-block mb-1" />{" "}
-                                Stars: 23
-                            </div>
-                            <div className="border-gray-600 rounded-full border text-white px-3 inline-block py-0.5 my-2 mx-1 text-xs bg-[#111827]">
-                                <FaRegEye className="inline-block mb-0.5" />{" "}
-                                Watcher: 23
-                            </div>
-                            <div className="border-gray-600 rounded-full border text-white px-3 inline-block py-0.5 my-2 mx-1 text-xs bg-[#111827]">
-                                <FaCodeFork className="inline-block mb-0.5" />{" "}
-                                Forks: 23
-                            </div>
-                        </div>
+                    <div className="flex mt-2 flex-wrap">
+                        <span className="border-gray-600 rounded-full border text-white px-3 py-0.5 my-2 mx-1 text-xs bg-[#111827] flex items-center">
+                            <VscIssues className="mr-1" /> Open Issues: 23
+                        </span>
+                        <span className="border-gray-600 rounded-full border text-white px-3 py-0.5 my-2 mx-1 text-xs bg-[#111827] flex items-center">
+                            <DiGitBranch className="mr-1" /> Default: main
+                        </span>
+                        <span className="border-gray-600 rounded-full border text-white px-3 py-0.5 my-2 mx-1 text-xs bg-[#111827] flex items-center">
+                            <FaRegStar className="mr-1" /> Stars: 23
+                        </span>
+                        <span className="border-gray-600 rounded-full border text-white px-3 py-0.5 my-2 mx-1 text-xs bg-[#111827] flex items-center">
+                            <FaRegEye className="mr-1" /> Watcher: 23
+                        </span>
+                        <span className="border-gray-600 rounded-full border text-white px-3 py-0.5 my-2 mx-1 text-xs bg-[#111827] flex items-center">
+                            <FaCodeFork className="mr-1" /> Forks: 23
+                        </span>
                     </div>
-                </div>
-            </div>
-            <div className="text-white lg:w-8/12 md:w-8/12 w-10/12 mx-auto px-3 border-x border-b rounded-b-lg border-gray-400 py-3">
-                <h3 className="text-2xl text-zinc-400">Readme</h3>
-                <hr className="mb-2" />
-                <Markdown className="prose prose-slate dark:prose-invert lg:prose-sm">
-                    {markdown}
-                </Markdown>
-            </div>
+                </section>
+
+                <section className="text-white border-gray-400 border-x border-b rounded-b-lg py-3 px-4">
+                    <h3 className="text-2xl text-zinc-400 mb-2">Readme</h3>
+                    <hr className="mb-2" />
+                    <Markdown className="prose prose-slate dark:prose-invert lg:prose-sm">
+                        {markdown}
+                    </Markdown>
+                </section>
+            </main>
         </div>
     );
 }
