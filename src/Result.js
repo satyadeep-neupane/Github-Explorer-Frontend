@@ -88,8 +88,16 @@ export default function App() {
                             <p className="inline-block text-white text-xs ms-3">
                                 Updated on: 14th May
                             </p>
+                            <p className="xs:block sm:hidden text-white text-xs ms-3">
+                                <a
+                                    href="#"
+                                    className="text-sm float mt-2.5 underline text-sky-500"
+                                >
+                                    Read More
+                                </a>
+                            </p>
                         </div>
-                        <div className="w-2/12">
+                        <div className="w-2/12 hidden sm:block">
                             <a
                                 href="#"
                                 className="text-sm float-end mt-2.5 underline text-sky-500"
