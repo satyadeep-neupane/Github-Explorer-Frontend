@@ -2,6 +2,9 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import Header from "../components/Header";
 import MarkdownSection from "../components/MarkdownSection";
 import ProjectDetail from "../components/ProjectDetail";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const markdown = `
 # Project Title
@@ -62,6 +65,25 @@ Inspiration, code snippets, etc.
 * [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)`;
 
 export default function Detail() {
+    const [result, setResult] = useState({});
+    const { ownerId, repoName } = useParams();
+
+    const getResult = async () => {
+        try {
+            const result = await axios.get(
+                `http://127.0.0.1:5000/api/repos/${ownerId}/${repoName}`
+            );
+
+            setResult(result.data?.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        getResult();
+    }, []);
+
     return (
         <div className="container-full mx-auto min-h-screen bg-custom-black pb-3">
             <Header />
@@ -72,17 +94,19 @@ export default function Detail() {
                     View More
                 </button>
                 <ProjectDetail
-                    repositoryName={"kunal-kushwaha/DSA-Bootcamp-Java"}
-                    ownerName={"Kunal Kushwaha"}
+                    repositoryName={`${result?.ownerName}/${result?.repositoryName}`}
+                    repositoryUrl={result?.repositoryUrl}
+                    ownerName={result?.ownerName}
+                    ownerUrl={result?.ownerUrl}
                     updatedAt={"May 18"}
-                    stars={"11"}
-                    openIssues={"32"}
-                    defaultBranch={"main"}
-                    watchers={"5"}
-                    forks={"10"}
+                    stars={result?.starsCount}
+                    openIssues={result?.openIssuesCount}
+                    defaultBranch={result?.defaultBranch}
+                    watchers={result?.watchersCount}
+                    forks={result?.forksCount}
                 />
 
-                <MarkdownSection markdown={markdown} />
+                {result?.readme && <MarkdownSection markdown={result?.readme} />}
             </main>
         </div>
     );

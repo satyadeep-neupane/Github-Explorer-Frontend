@@ -1,15 +1,24 @@
 import { useState, useCallback, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Header from "../components/Header";
 import SearchFilter from "../components/SearchFilter";
 import ProjectCard from "../components/ProjectCard";
 import Paginate from "../components/Paginate";
+import axios from "axios";
+
+function generatePageString(perPage, page, totalItems) {
+    const startItem = (page - 1) * perPage + 1;
+    const endItem = Math.min(page * perPage, totalItems);
+    return `Showing ${startItem} - ${endItem} of ${totalItems}`;
+}
 
 export default function Search() {
     const [searchParams, setSearchParams] = useSearchParams();
-    const total = 10;
+    const total = 1;
 
     const [query, setQuery] = useState(searchParams.get("q") || "");
+    const [searchResults, setSearchResults] = useState([]);
+    const [pagination, setPagination] = useState({});
 
     const [params, setParams] = useState({
         q: searchParams.get("q") || "",
@@ -62,6 +71,23 @@ export default function Search() {
         setParams({ q: query });
     };
 
+    const getResult = async () => {
+        try {
+            const result = await axios.get(
+                `http://127.0.0.1:5000/api/search?${searchParams.toString()}`
+            );
+
+            setSearchResults(result.data?.data?.items);
+            setPagination(result?.data?.pagination);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        getResult();
+    }, [params]);
+
     return (
         <div className="container-full mx-auto min-h-screen bg-custom-black">
             <Header
@@ -82,24 +108,31 @@ export default function Search() {
 
                 <section className="mt-3">
                     <p className="text-slate-500 text-xs">
-                        Showing 1 - {params.per_page} of 1160
+                        {generatePageString(
+                            pagination?.perPage,
+                            pagination?.currentPage,
+                            pagination?.totalCount
+                        )}
                     </p>
                 </section>
 
-                <ProjectCard
-                    repositoryName="kunal-kushwaha/DSA-Bootcamp-Java"
-                    ownerName="kunal-kushwaha"
-                    description="This repository consists of the code samples, assignments, and notes for the Java data structures & algorithms + interview preparation bootcamp."
-                    stars={23}
-                    watchers={6}
-                    forks={10}
-                    updatedAt="May 18"
-                    href="#"
-                />
+                {searchResults.map((r) => (
+                    <ProjectCard
+                        key={r.id}
+                        repositoryName={r.repoFullName}
+                        ownerName={r.ownerId}
+                        description={r.description?.substring(0, 150)}
+                        stars={r.starsCount}
+                        watchers={r.watchersCount}
+                        forks={r.forksCount}
+                        updatedAt="May 18"
+                        href={`/repos/${r.ownerId}/${r.repoName}`}
+                    />
+                ))}
 
                 <Paginate
-                    total={total}
-                    active={params.page}
+                    total={pagination.totalPages}
+                    active={params.page || 1}
                     changePage={changePage}
                 />
             </main>

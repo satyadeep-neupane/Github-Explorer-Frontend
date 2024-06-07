@@ -10,14 +10,17 @@ function ProjectDetail(props) {
     return (
         <section className="border-gray-400 rounded-t-lg border-x border-t py-1.5 px-4">
             <a
-                href="#"
+                href={props.repositoryUrl}
+                target='_blank'
                 className="text-2xl font-semibold text-sky-500 underline"
             >
                 {props.repositoryName}
             </a>
             <h2 className="text-zinc-200 text-lg flex items-center">
                 {props.ownerName + " "}
-                <FaLink className="inline-block text-sky-500 ml-2" />
+                <a href={props.ownerUrl} target='_blank'>
+                    <FaLink className="inline-block text-sky-500 ml-2" />
+                </a>
             </h2>
             <p className="text-zinc-200 text-xs">
                 Last update on: {props.updatedAt}

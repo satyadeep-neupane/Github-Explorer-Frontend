@@ -14,7 +14,7 @@ const router = createBrowserRouter([
         element: <Search />,
     },
     {
-        path: "/detail",
+        path: "/repos/:ownerId/:repoName",
         element: <Detail />,
     },
 ]);

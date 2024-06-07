@@ -4,6 +4,7 @@ import { FaRegStar, FaRegEye, FaLink } from "react-icons/fa";
 import { FaCodeFork } from "react-icons/fa6";
 import { VscIssues } from "react-icons/vsc";
 import { DiGitBranch } from "react-icons/di";
+import { Link } from 'react-router-dom';
 
 function ProjectCard(props) {
     return (
@@ -25,21 +26,21 @@ function ProjectCard(props) {
                         Updated on: {props.updatedAt}
                     </p>
                     <p className="xs:block sm:hidden text-white text-xs ms-3">
-                        <a
-                            href={props.href}
+                        <Link
+                            to={props.href}
                             className="text-sm mt-2.5 underline text-sky-500"
                         >
                             Read More
-                        </a>
+                        </Link>
                     </p>
                 </div>
                 <div className="w-2/12 hidden sm:block">
-                    <a
-                        href={props.href}
+                    <Link
+                        to={props.href}
                         className="text-sm float-end mt-2.5 underline text-sky-500"
                     >
                         Read More
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>
