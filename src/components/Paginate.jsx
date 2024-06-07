@@ -1,9 +1,11 @@
 import React from 'react';
 
-function Paginate({ active, total }) {
+function Paginate({ active: a, total: t, changePage }) {
+    const active = parseInt(a);
+    const total = parseInt(t);
     const range = 2;
     let first = Math.max(active - range, 1);
-    let last = Math.min(active + range, total);
+    let last = Math.min(parseInt(active) + range, total);
 
     if (last - first < 4) {
         if (first === 1) {
@@ -23,13 +25,15 @@ function Paginate({ active, total }) {
             <button
                 className={`inline-block text-white rounded-full border border-slate-600 m-0 pb-1 px-2 text-sm mx-1 ${active === 1 ? 'cursor-not-allowed opacity-50' : ''}`}
                 title="Previous"
+                onClick={() => changePage(active - 1)}
             >
-                &lt;&lt;
+                &lt;
             </button>
             {pages.map(page => (
                 <button
                     key={page}
                     className={`inline-block text-white rounded-full border border-slate-600 m-0 pb-1 px-2 text-sm mx-1 ${page === active ? 'bg-indigo-500' : ''}`}
+                    onClick={() => changePage(page)}
                 >
                     {page}
                 </button>
@@ -37,8 +41,9 @@ function Paginate({ active, total }) {
             <button
                 className={`inline-block text-white rounded-full border border-slate-600 m-0 pb-1 px-2 text-sm mx-1 ${active === total ? 'cursor-not-allowed opacity-50' : ''}`}
                 title="Next"
+                onClick={() => changePage(active + 1)}
             >
-                &gt;&gt;
+                &gt;
             </button>
         </section>
     );
