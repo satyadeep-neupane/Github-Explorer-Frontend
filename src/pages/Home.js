@@ -1,6 +1,6 @@
 import { IoSearch } from "react-icons/io5";
 
-export default function App() {
+export default function Home() {
     return (
         <main className="container-full mx-auto h-screen bg-custom-black">
             <header className="text-center pt-[7rem]">

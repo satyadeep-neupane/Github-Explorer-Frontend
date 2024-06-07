@@ -1,9 +1,9 @@
-import Header from "./components/Header";
-import SearchFilter from "./components/SearchFilter";
-import ProjectCard from "./components/ProjectCard";
-import Paginate from "./components/Paginate";
+import Header from "../components/Header";
+import SearchFilter from "../components/SearchFilter";
+import ProjectCard from "../components/ProjectCard";
+import Paginate from "../components/Paginate";
 
-export default function App() {
+export default function Search() {
     return (
         <div className="container-full mx-auto min-h-screen bg-custom-black">
             <Header />

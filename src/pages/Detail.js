@@ -1,7 +1,7 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
-import Header from "./components/Header";
-import MarkdownSection from "./components/MarkdownSection";
-import ProjectDetail from "./components/ProjectDetail";
+import Header from "../components/Header";
+import MarkdownSection from "../components/MarkdownSection";
+import ProjectDetail from "../components/ProjectDetail";
 
 const markdown = `
 # Project Title
@@ -61,7 +61,7 @@ Inspiration, code snippets, etc.
 * [zenorocha](https://gist.github.com/zenorocha/4526327)
 * [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)`;
 
-export default function App() {
+export default function Detail() {
     return (
         <div className="container-full mx-auto min-h-screen bg-custom-black pb-3">
             <Header />
