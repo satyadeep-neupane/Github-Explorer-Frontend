@@ -5,6 +5,8 @@ import SearchFilter from "../components/SearchFilter";
 import ProjectCard from "../components/ProjectCard";
 import Paginate from "../components/Paginate";
 import axios from "axios";
+import Loading from "../components/Loading";
+import { parseCustomDate } from "../helpers/functions";
 
 function generatePageString(perPage, page, totalItems) {
     const startItem = (page - 1) * perPage + 1;
@@ -14,8 +16,8 @@ function generatePageString(perPage, page, totalItems) {
 
 export default function Search() {
     const [searchParams, setSearchParams] = useSearchParams();
-    const total = 1;
 
+    const [loading, setLoading] = useState(false);
     const [query, setQuery] = useState(searchParams.get("q") || "");
     const [searchResults, setSearchResults] = useState([]);
     const [pagination, setPagination] = useState({});
@@ -73,12 +75,14 @@ export default function Search() {
 
     const getResult = async () => {
         try {
+            setLoading(true);
             const result = await axios.get(
                 `http://127.0.0.1:5000/api/search?${searchParams.toString()}`
             );
 
             setSearchResults(result.data?.data?.items);
             setPagination(result?.data?.pagination);
+            setLoading(false);
         } catch (err) {
             console.log(err);
         }
@@ -116,19 +120,23 @@ export default function Search() {
                     </p>
                 </section>
 
-                {searchResults.map((r) => (
-                    <ProjectCard
-                        key={r.id}
-                        repositoryName={r.repoFullName}
-                        ownerName={r.ownerId}
-                        description={r.description?.substring(0, 150)}
-                        stars={r.starsCount}
-                        watchers={r.watchersCount}
-                        forks={r.forksCount}
-                        updatedAt="May 18"
-                        href={`/repos/${r.ownerId}/${r.repoName}`}
-                    />
-                ))}
+                {loading ? (
+                    <Loading />
+                ) : (
+                    searchResults.map((r) => (
+                        <ProjectCard
+                            key={r.id}
+                            repositoryName={r.repoFullName}
+                            ownerName={r.ownerId}
+                            description={r.description?.substring(0, 150)}
+                            stars={r.starsCount}
+                            watchers={r.watchersCount}
+                            forks={r.forksCount}
+                            updatedAt={parseCustomDate(r.updatedAt)}
+                            href={`/repos/${r.ownerId}/${r.repoName}`}
+                        />
+                    ))
+                )}
 
                 <Paginate
                     total={pagination.totalPages}
