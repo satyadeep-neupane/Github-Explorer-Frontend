@@ -86,7 +86,7 @@ export default function Search() {
 
     useEffect(() => {
         getResult();
-    }, [params]);
+    }, [searchParams]);
 
     return (
         <div className="container-full mx-auto min-h-screen bg-custom-black">

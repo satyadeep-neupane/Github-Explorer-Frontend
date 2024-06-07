@@ -8,11 +8,11 @@ function SearchFilter({ sortBy, handleSortByParamChange, perPage, handleParamCha
                 <select className="bg-[#111827] text-white p-2 rounded-md" value={sortBy} onChange={handleSortByParamChange}>
                     <option value="" defaultValue>Best Match</option>
                     <option value="stars-desc">Most Stars</option>
-                    <option value="stars">Fewest Stars</option>
+                    <option value="stars-asc">Fewest Stars</option>
                     <option value="forks-desc">Most Forks</option>
-                    <option value="forks">Fewest Forks</option>
-                    <option value="update-desc">Recently Updated</option>
-                    <option value="update">Least Recently Updated</option>
+                    <option value="forks-asc">Fewest Forks</option>
+                    <option value="updated-desc">Recently Updated</option>
+                    <option value="updated-asc">Least Recently Updated</option>
                 </select>
             </div>
             <div className="w-4/12 flex justify-end">

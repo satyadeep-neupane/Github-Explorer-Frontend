@@ -2,8 +2,6 @@ import React from 'react'
 import Pill from './Pill'
 import { FaRegStar, FaRegEye, FaLink } from "react-icons/fa";
 import { FaCodeFork } from "react-icons/fa6";
-import { VscIssues } from "react-icons/vsc";
-import { DiGitBranch } from "react-icons/di";
 import { Link } from 'react-router-dom';
 
 function ProjectCard(props) {
