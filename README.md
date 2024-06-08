@@ -25,7 +25,8 @@ cd MyReactApp
 ```
 
 ### 2. Copy Environment Variables
-   Copy the .env.example file to .env:
+
+Copy the .env.example file to .env:
 
 ```
 cp .env.example .env
@@ -38,7 +39,8 @@ REACT_APP_BACKEND_URL=http://your-backend-url
 ```
 
 ### 3. Install Dependencies
-   Install the project dependencies:
+
+Install the project dependencies:
 
 Using npm:
 
@@ -53,10 +55,12 @@ yarn install
 ```
 
 ### 4. Ensure Backend is Running
-   Make sure your backend server is running and accessible at the URL specified in the .env file.
+
+Make sure your backend server is running and accessible at the URL specified in the .env file.
 
 ### 5. Start the Application
-   Start the application:
+
+Start the application:
 
 Using npm:
 
@@ -71,3 +75,8 @@ yarn start
 ```
 
 Open your browser and visit http://localhost:3000 to see the app running.
+
+## Known Issues
+
+1. HTML in README Not Rendered Properly:
+   Current version only supports markup in README file. HTML content in the README file may not be rendered propery.
