@@ -20,8 +20,8 @@ Follow these steps to set up and run the application locally.
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/MyReactApp.git
-cd MyReactApp
+git clone https://github.com/satyadeep-neupane/Github-Explorer-Frontend.git
+cd Github-Explorer-Frontend
 ```
 
 ### 2. Copy Environment Variables
