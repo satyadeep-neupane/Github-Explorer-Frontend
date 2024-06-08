@@ -1,16 +1,27 @@
 import Header from "../components/Header";
 import MarkdownSection from "../components/MarkdownSection";
 import ProjectDetail from "../components/ProjectDetail";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { parseCustomDate } from "../helpers/functions";
 import { getResultDetail } from "../helpers/api";
 
 export default function Detail() {
+    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+
     const [result, setResult] = useState({});
     const [loading, setLoading] = useState(false);
     const { ownerId, repoName } = useParams();
+
+    const handleQueryChange = useCallback((e) => setQuery(e.target.value), []);
+    const [query, setQuery] = useState(searchParams.get("q") || "");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        navigate(`/search?q=${query}`);
+    };
 
     const getResult = async () => {
         try {
@@ -29,7 +40,11 @@ export default function Detail() {
 
     return (
         <div className="container-full mx-auto min-h-screen bg-custom-black pb-3">
-            <Header />
+            <Header
+                q={query}
+                handleQueryChange={handleQueryChange}
+                handleSubmit={handleSubmit}
+            />
 
             <main className="lg:w-8/12 md:w-8/12 w-10/12 mx-auto mt-10">
                 {loading ? (
