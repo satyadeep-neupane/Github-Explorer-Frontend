@@ -7,11 +7,14 @@ import Paginate from "../components/Paginate";
 import axios from "axios";
 import Loading from "../components/Loading";
 import { parseCustomDate } from "../helpers/functions";
+import { getSearchResult } from "../helpers/api";
 
 function generatePageString(perPage, page, totalItems) {
     const startItem = (page - 1) * perPage + 1;
     const endItem = Math.min(page * perPage, totalItems);
-    return `Showing ${startItem} - ${endItem} of ${totalItems}`;
+    return `Showing ${isNaN(startItem) ? 0 : startItem} - ${
+        isNaN(endItem) ? 0 : endItem
+    } of ${isNaN(totalItems) ? 0 : totalItems}`;
 }
 
 export default function Search() {
@@ -76,9 +79,7 @@ export default function Search() {
     const getResult = async () => {
         try {
             setLoading(true);
-            const result = await axios.get(
-                `http://127.0.0.1:5000/api/search?${searchParams.toString()}`
-            );
+            const result = await getSearchResult(searchParams.toString());
 
             setSearchResults(result.data?.data?.items);
             setPagination(result?.data?.pagination);

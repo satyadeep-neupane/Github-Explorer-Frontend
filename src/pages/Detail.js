@@ -1,12 +1,11 @@
-import { IoMdArrowRoundBack } from "react-icons/io";
 import Header from "../components/Header";
 import MarkdownSection from "../components/MarkdownSection";
 import ProjectDetail from "../components/ProjectDetail";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { parseCustomDate } from "../helpers/functions";
+import { getResultDetail } from "../helpers/api";
 
 export default function Detail() {
     const [result, setResult] = useState({});
@@ -16,10 +15,7 @@ export default function Detail() {
     const getResult = async () => {
         try {
             setLoading(true);
-            const result = await axios.get(
-                `http://127.0.0.1:5000/api/repos/${ownerId}/${repoName}`
-            );
-
+            const result = await getResultDetail(ownerId, repoName);
             setResult(result.data?.data);
             setLoading(false);
         } catch (err) {
