@@ -1,4 +1,4 @@
-# MyReactApp
+# Github Explorer
 
 ## Introduction
 
